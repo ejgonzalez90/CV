@@ -1,0 +1,14 @@
+C:\Programming\CV\CV.People\bin\Debug\netcoreapp2.1\CV.People.deps.json
+C:\Programming\CV\CV.People\bin\Debug\netcoreapp2.1\CV.People.runtimeconfig.json
+C:\Programming\CV\CV.People\bin\Debug\netcoreapp2.1\CV.People.runtimeconfig.dev.json
+C:\Programming\CV\CV.People\bin\Debug\netcoreapp2.1\CV.People.dll
+C:\Programming\CV\CV.People\bin\Debug\netcoreapp2.1\CV.People.pdb
+C:\Programming\CV\CV.People\obj\Debug\netcoreapp2.1\CV.People.csprojAssemblyReference.cache
+C:\Programming\CV\CV.People\obj\Debug\netcoreapp2.1\CV.People.csproj.CoreCompileInputs.cache
+C:\Programming\CV\CV.People\obj\Debug\netcoreapp2.1\CV.People.RazorAssemblyInfo.cache
+C:\Programming\CV\CV.People\obj\Debug\netcoreapp2.1\CV.People.RazorAssemblyInfo.cs
+C:\Programming\CV\CV.People\obj\Debug\netcoreapp2.1\CV.People.AssemblyInfoInputs.cache
+C:\Programming\CV\CV.People\obj\Debug\netcoreapp2.1\CV.People.AssemblyInfo.cs
+C:\Programming\CV\CV.People\obj\Debug\netcoreapp2.1\CV.People.RazorTargetAssemblyInfo.cache
+C:\Programming\CV\CV.People\obj\Debug\netcoreapp2.1\CV.People.dll
+C:\Programming\CV\CV.People\obj\Debug\netcoreapp2.1\CV.People.pdb

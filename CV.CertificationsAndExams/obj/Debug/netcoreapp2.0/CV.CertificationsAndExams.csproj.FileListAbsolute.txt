@@ -1,0 +1,11 @@
+C:\Programming\CV\CV.CertificationsAndExams\bin\Debug\netcoreapp2.0\CV.CertificationsAndExams.deps.json
+C:\Programming\CV\CV.CertificationsAndExams\bin\Debug\netcoreapp2.0\CV.CertificationsAndExams.runtimeconfig.json
+C:\Programming\CV\CV.CertificationsAndExams\bin\Debug\netcoreapp2.0\CV.CertificationsAndExams.runtimeconfig.dev.json
+C:\Programming\CV\CV.CertificationsAndExams\bin\Debug\netcoreapp2.0\CV.CertificationsAndExams.dll
+C:\Programming\CV\CV.CertificationsAndExams\bin\Debug\netcoreapp2.0\CV.CertificationsAndExams.pdb
+C:\Programming\CV\CV.CertificationsAndExams\obj\Debug\netcoreapp2.0\CV.CertificationsAndExams.csprojAssemblyReference.cache
+C:\Programming\CV\CV.CertificationsAndExams\obj\Debug\netcoreapp2.0\CV.CertificationsAndExams.csproj.CoreCompileInputs.cache
+C:\Programming\CV\CV.CertificationsAndExams\obj\Debug\netcoreapp2.0\CV.CertificationsAndExams.AssemblyInfoInputs.cache
+C:\Programming\CV\CV.CertificationsAndExams\obj\Debug\netcoreapp2.0\CV.CertificationsAndExams.AssemblyInfo.cs
+C:\Programming\CV\CV.CertificationsAndExams\obj\Debug\netcoreapp2.0\CV.CertificationsAndExams.dll
+C:\Programming\CV\CV.CertificationsAndExams\obj\Debug\netcoreapp2.0\CV.CertificationsAndExams.pdb

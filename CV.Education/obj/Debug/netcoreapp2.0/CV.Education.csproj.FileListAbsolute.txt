@@ -1,0 +1,11 @@
+C:\Programming\CV\CV.Education\bin\Debug\netcoreapp2.0\CV.Education.deps.json
+C:\Programming\CV\CV.Education\bin\Debug\netcoreapp2.0\CV.Education.runtimeconfig.json
+C:\Programming\CV\CV.Education\bin\Debug\netcoreapp2.0\CV.Education.runtimeconfig.dev.json
+C:\Programming\CV\CV.Education\bin\Debug\netcoreapp2.0\CV.Education.dll
+C:\Programming\CV\CV.Education\bin\Debug\netcoreapp2.0\CV.Education.pdb
+C:\Programming\CV\CV.Education\obj\Debug\netcoreapp2.0\CV.Education.csproj.CoreCompileInputs.cache
+C:\Programming\CV\CV.Education\obj\Debug\netcoreapp2.0\CV.Education.AssemblyInfoInputs.cache
+C:\Programming\CV\CV.Education\obj\Debug\netcoreapp2.0\CV.Education.AssemblyInfo.cs
+C:\Programming\CV\CV.Education\obj\Debug\netcoreapp2.0\CV.Education.dll
+C:\Programming\CV\CV.Education\obj\Debug\netcoreapp2.0\CV.Education.pdb
+C:\Programming\CV\CV.Education\obj\Debug\netcoreapp2.0\CV.Education.csprojAssemblyReference.cache

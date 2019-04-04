@@ -12,6 +12,9 @@ namespace CV.People.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
+    // TODO: Implement Authorization
+    //[Authorize]
     public class PeopleController : ControllerBase
     {
         private IPeopleRepository _repository;
@@ -26,9 +29,18 @@ namespace CV.People.Controllers
             _repository.GetPersonBasicData(personId);
 
         [HttpGet]
-        [Authorize]
+        [Route("GetPersonEmailAddresses")]        
+        public IEnumerable<PersonEmailAddressDTO> GetPersonEmailAddresses(int personId) =>
+            _repository.GetPersonEmailAddresses(personId);
+
+        [HttpGet]        
         [Route("GetPersonPhones")]
-        public ActionResult<PersonPhonesDTO> GetPersonPhones(int personId) =>
+        public IEnumerable<PersonPhonesDTO> GetPersonPhones(int personId) =>
             _repository.GetPersonPhones(personId);
+
+        [HttpGet]
+        [Route("GetPersonHobbies")]
+        public IEnumerable<string> GetPersonHobbies(int personId) =>
+            _repository.GetPersonHobbies(personId);
     }
 }

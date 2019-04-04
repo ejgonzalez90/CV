@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using CV.People.Controllers;
 using CV.People.DTOs;
@@ -21,6 +22,7 @@ namespace CV.People.Repository
         {
             return _dbcontext.People
                 .Include(p => p.PersonEmails)
+                .Include(p => p.PersonPhones)
                 .Where(p => p.PersonId == personId)
                 .Select(p => new PersonBasicDataDTO
                 {
@@ -31,22 +33,40 @@ namespace CV.People.Repository
                     CivilStatus =  (CivilStatus)Convert.ToInt32(p.CivilStatus),
                     Description = p.Description,
                     WebSite = p.WebSite,
-                    EmailAddress = p.PersonEmails.SingleOrDefault(pe => pe.IsDefault).EmailAddress,
-                    Hobbies = p.PersonHobbies.Select(ph => ph.Description)
+                    EmailAddress = p.PersonEmails.SingleOrDefault(pe => pe.IsDefault).EmailAddress
                 })
                 .Single();
         }
 
-        public PersonPhonesDTO GetPersonPhones(int personId)
+        public IEnumerable<PersonEmailAddressDTO> GetPersonEmailAddresses(int personId) =>        
+            _dbcontext.PersonEmails
+                .Where(pe => pe.PersonId == personId)
+                .Select(pe => new PersonEmailAddressDTO
+                {
+                    EmailAddress = pe.EmailAddress,
+                    IsDefault = pe.IsDefault
+                })
+                .ToList();
+
+        public IEnumerable<string> GetPersonHobbies(int personId) =>
+            _dbcontext.PersonHobbies
+                .Where(ph => ph.PersonId == personId)
+                .Select(ph => ph.Description)
+                .ToList();
+
+        public IEnumerable<PersonPhonesDTO> GetPersonPhones(int personId)
         {
             return _dbcontext.PersonPhones
                 .Where(pp => pp.PersonId == personId)
                 .Select(pp => new PersonPhonesDTO
                 {
                     PersonPhoneId = pp.PersonPhoneId,
-                    PersonId = pp.PersonId
+                    PersonId = pp.PersonId,
+                    PhoneNumer = $"+{pp.CountryCode} {pp.AreaCode.ToString().Insert(1, " ")} {pp.PhoneNumber.Insert(4, "-")}",
+                    PhoneTypeId = pp.PhoneTypeId,
+                    IsDefault = pp.IsDefault
                 })
-                .Single();
+                .ToList();
         }
     }
 }

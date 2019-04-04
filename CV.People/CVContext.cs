@@ -19,13 +19,14 @@ namespace CV.People
         public virtual DbSet<PersonEmails> PersonEmails { get; set; }
         public virtual DbSet<PersonHobbies> PersonHobbies { get; set; }
         public virtual DbSet<PersonPhones> PersonPhones { get; set; }
+        public virtual DbSet<PhoneTypes> PhoneTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=localhost;Database=CV;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=localhost;Database=CV;Trusted_Connection=true;");
             }
         }
 
@@ -33,22 +34,48 @@ namespace CV.People
         {
             modelBuilder.Entity<People>(entity =>
             {
+                entity.HasKey(e => e.PersonId);
+
+                entity.ToTable("People", "People");
+
+                entity.Property(e => e.BirthDate).HasColumnType("date");
+
                 entity.Property(e => e.Description).IsUnicode(false);
 
-                entity.Property(e => e.FirstName).IsUnicode(false);
+                entity.Property(e => e.FirstName)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.JobTitle).IsUnicode(false);
+                entity.Property(e => e.JobTitle)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.LastName).IsUnicode(false);
+                entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.MiddleName).IsUnicode(false);
+                entity.Property(e => e.MiddleName)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.WebSite).IsUnicode(false);
+                entity.Property(e => e.WebSite)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<PersonEmails>(entity =>
             {
-                entity.Property(e => e.EmailAddress).IsUnicode(false);
+                entity.HasKey(e => e.PersonEmailId);
+
+                entity.ToTable("PersonEmails", "People");
+
+                entity.Property(e => e.EmailAddress)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Person)
                     .WithMany(p => p.PersonEmails)
@@ -59,7 +86,14 @@ namespace CV.People
 
             modelBuilder.Entity<PersonHobbies>(entity =>
             {
-                entity.Property(e => e.Description).IsUnicode(false);
+                entity.HasKey(e => e.PersonHobbieId);
+
+                entity.ToTable("PersonHobbies", "People");
+
+                entity.Property(e => e.Description)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Person)
                     .WithMany(p => p.PersonHobbies)
@@ -70,13 +104,38 @@ namespace CV.People
 
             modelBuilder.Entity<PersonPhones>(entity =>
             {
-                entity.Property(e => e.PhoneNumber).IsUnicode(false);
+                entity.HasKey(e => e.PersonPhoneId);
+
+                entity.ToTable("PersonPhones", "People");
+
+                entity.Property(e => e.PhoneNumber)
+                    .IsRequired()
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.Person)
                     .WithMany(p => p.PersonPhones)
                     .HasForeignKey(d => d.PersonId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PersonPhones_People");
+
+                entity.HasOne(d => d.PhoneType)
+                    .WithMany(p => p.PersonPhones)
+                    .HasForeignKey(d => d.PhoneTypeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_PersonPhones_PhoneTypes");
+            });
+
+            modelBuilder.Entity<PhoneTypes>(entity =>
+            {
+                entity.HasKey(e => e.PhoneTypeId);
+
+                entity.ToTable("PhoneTypes", "MasterData");
+
+                entity.Property(e => e.Description)
+                    .IsRequired()
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
             });
         }
     }

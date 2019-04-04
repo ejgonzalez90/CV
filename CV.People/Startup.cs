@@ -32,7 +32,12 @@ namespace CV.People
             services.AddMvc();//.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors(options =>
                 options.AddPolicy(AllowApiGateway, builder =>
-                    builder.WithOrigins("https://localhost:6000/")
+                    builder.WithOrigins(
+                        // API Gateway
+                        "https://localhost:6000",
+                        // TODO: Remove
+                        "https://localhost:5001"
+                        )
                     )
                 );
 

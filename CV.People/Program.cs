@@ -19,7 +19,7 @@ namespace CV.People
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseUrls("http://localhost:6003/")
+                .UseUrls("https://localhost:6003/")
                 .UseStartup<Startup>();
     }
 }

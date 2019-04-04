@@ -28,6 +28,7 @@ namespace CV.People.DTOs
         public string Description { get; set; }
         public string WebSite { get; set; }
         public string EmailAddress { get; set; }
+        public byte[] ProfilePicture { get; set; }
     }
 
     public enum CivilStatus

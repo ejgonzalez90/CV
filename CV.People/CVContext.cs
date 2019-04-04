@@ -61,6 +61,8 @@ namespace CV.People
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
+                entity.Property(e => e.ProfilePicture).HasColumnType("image");
+
                 entity.Property(e => e.WebSite)
                     .HasMaxLength(255)
                     .IsUnicode(false);

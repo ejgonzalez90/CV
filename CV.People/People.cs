@@ -21,6 +21,7 @@ namespace CV.People
         public string JobTitle { get; set; }
         public string Description { get; set; }
         public string WebSite { get; set; }
+        public byte[] ProfilePicture { get; set; }
 
         public ICollection<PersonEmails> PersonEmails { get; set; }
         public ICollection<PersonHobbies> PersonHobbies { get; set; }

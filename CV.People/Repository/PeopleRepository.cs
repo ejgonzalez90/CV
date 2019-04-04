@@ -33,7 +33,8 @@ namespace CV.People.Repository
                     CivilStatus =  (CivilStatus)Convert.ToInt32(p.CivilStatus),
                     Description = p.Description,
                     WebSite = p.WebSite,
-                    EmailAddress = p.PersonEmails.SingleOrDefault(pe => pe.IsDefault).EmailAddress
+                    EmailAddress = p.PersonEmails.SingleOrDefault(pe => pe.IsDefault).EmailAddress,
+                    ProfilePicture = p.ProfilePicture
                 })
                 .Single();
         }

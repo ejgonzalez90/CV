@@ -24,10 +24,17 @@ namespace CV.People
 
         public IConfiguration Configuration { get; }
 
+        readonly string AllowApiGateway = "_AllowApiGateway";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();//.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddCors(options =>
+                options.AddPolicy(AllowApiGateway, builder =>
+                    builder.WithOrigins("https://localhost:6000/")
+                    )
+                );
 
             services.AddDbContext<CVContext>(options =>
             // TODO: Reemplazar por JsonFile
@@ -50,7 +57,9 @@ namespace CV.People
                 app.UseHsts();
             }
 
-            //app.UseHttpsRedirection();
+            app.UseCors(AllowApiGateway);
+
+            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

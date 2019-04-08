@@ -16,6 +16,10 @@ namespace CV.Education
         }
 
         public virtual DbSet<Education> Education { get; set; }
+        public virtual DbSet<PersonCertifications> PersonCertifications { get; set; }
+        public virtual DbSet<PersonExams> PersonExams { get; set; }
+        public virtual DbSet<PersonSkills> PersonSkills { get; set; }
+        public virtual DbSet<PhoneTypes> PhoneTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -47,6 +51,76 @@ namespace CV.Education
                 entity.Property(e => e.Institute)
                     .IsRequired()
                     .HasMaxLength(255)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<PersonCertifications>(entity =>
+            {
+                entity.HasKey(e => e.PersonCertificationId);
+
+                entity.ToTable("PersonCertifications", "Education");
+
+                entity.Property(e => e.PersonCertificationId).ValueGeneratedNever();
+
+                entity.Property(e => e.CertificationNumber)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DateAchieved).HasColumnType("date");
+
+                entity.Property(e => e.Description)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<PersonExams>(entity =>
+            {
+                entity.HasKey(e => e.PersonExamId);
+
+                entity.ToTable("PersonExams", "Education");
+
+                entity.Property(e => e.PersonExamId).ValueGeneratedNever();
+
+                entity.Property(e => e.DateAchieved).HasColumnType("date");
+
+                entity.Property(e => e.Description)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ExamCode)
+                    .IsRequired()
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<PersonSkills>(entity =>
+            {
+                entity.HasKey(e => e.PersonSkillId);
+
+                entity.ToTable("PersonSkills", "Education");
+
+                entity.Property(e => e.PersonSkillId).ValueGeneratedNever();
+
+                entity.Property(e => e.Description)
+                    .IsRequired()
+                    .HasMaxLength(63)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Knowledge).HasColumnType("numeric(5, 4)");
+            });
+
+            modelBuilder.Entity<PhoneTypes>(entity =>
+            {
+                entity.HasKey(e => e.PhoneTypeId);
+
+                entity.ToTable("PhoneTypes", "MasterData");
+
+                entity.Property(e => e.Description)
+                    .IsRequired()
+                    .HasMaxLength(15)
                     .IsUnicode(false);
             });
         }

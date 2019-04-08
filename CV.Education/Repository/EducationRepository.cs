@@ -1,18 +1,58 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CV.Education;
-using Microsoft.EntityFrameworkCore;
+using CV.Education.DTOs;
 
-public class EducationRepository
+namespace CV.Education.Repository
 {
-    // TODO: Ver DI
-    CVContext context = new CVContext();
-
-    public IEnumerable<Education> GetEducation(bool? enabled)
+    public class EducationRepository : IEducationRepository
     {
-        return context.Education
-            .Where(e => !enabled.HasValue || e.Enabled == enabled)
-            .ToList();
-    }
+        private CVContext _dbcontext;
+
+        public EducationRepository(CVContext dbcontext)
+        {
+            _dbcontext = dbcontext;
+        }
+
+        public IEnumerable<PersonEducationDTO> GetPersonEducation(int personId) =>
+            _dbcontext.Education            
+                .Where(e => e.PersonId == personId)
+                .Select(e => new PersonEducationDTO
+                {
+                    Institute = e.Institute,
+                    Description = e.Description,
+                    DateFrom = e.DateFrom,
+                    DateTo = e.DateTo
+                })
+                .ToList();
+
+        public IEnumerable<PersonCertificationsDTO> GetPersonCertifications(int personId) =>
+            _dbcontext.PersonCertifications
+                .Where(pc => pc.PersonId == personId)
+                .Select(pc => new PersonCertificationsDTO
+                {
+                    Description = pc.Description,
+                    DateAchieved = pc.DateAchieved,
+                    CertificationNumber = pc.CertificationNumber
+                })
+                .ToList();
+
+        public IEnumerable<PersonExamsDTO> GetPersonExams(int personId) =>
+            _dbcontext.PersonExams
+                .Where(pe => pe.PersonId == personId)
+                .Select(pe => new PersonExamsDTO{
+                    ExamCode = pe.ExamCode,
+                    Description = pe.Description,
+                    DateAchieved = pe.DateAchieved
+                })
+                .ToList();
+
+        public IEnumerable<PersonSkillsDTO> GetPersonSkills(int personId) =>
+            _dbcontext.PersonSkills
+                .Where(ps => ps.PersonId == personId)
+                .Select(ps => new PersonSkillsDTO{
+                    Description = ps.Description,
+                    Knowledge = ps.Knowledge
+                });
+    }    
 }

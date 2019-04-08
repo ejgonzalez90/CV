@@ -6,6 +6,7 @@ namespace CV.Education
     public partial class Education
     {
         public int EducationId { get; set; }
+        public int PersonId { get; set; }
         public string Institute { get; set; }
         public string Description { get; set; }
         public DateTime DateFrom { get; set; }

@@ -21,6 +21,7 @@ namespace CV.People.Repository
         public PersonBasicDataDTO GetPersonBasicData(int personId)
         {
             return _dbcontext.People
+                .AsNoTracking()
                 .Include(p => p.PersonEmails)
                 .Include(p => p.PersonPhones)
                 .Where(p => p.PersonId == personId)
@@ -41,6 +42,7 @@ namespace CV.People.Repository
 
         public IEnumerable<PersonEmailAddressDTO> GetPersonEmailAddresses(int personId) =>        
             _dbcontext.PersonEmails
+                .AsNoTracking()
                 .Where(pe => pe.PersonId == personId)
                 .Select(pe => new PersonEmailAddressDTO
                 {
@@ -51,6 +53,7 @@ namespace CV.People.Repository
 
         public IEnumerable<string> GetPersonHobbies(int personId) =>
             _dbcontext.PersonHobbies
+                .AsNoTracking()
                 .Where(ph => ph.PersonId == personId)
                 .Select(ph => ph.Description)
                 .ToList();
@@ -58,6 +61,7 @@ namespace CV.People.Repository
         public IEnumerable<PersonPhonesDTO> GetPersonPhones(int personId)
         {
             return _dbcontext.PersonPhones
+                .AsNoTracking()
                 .Where(pp => pp.PersonId == personId)
                 .Select(pp => new PersonPhonesDTO
                 {
